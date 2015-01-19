@@ -9,7 +9,7 @@ and then clone the repo.
 
 ## Things to note
 
-I've found that the recent version of plugman doesn't respond correctly to CLI install commands for the
+I've found that the recent version of plugman doesn't respond correctly to CLI __install__ commands for the
 __browser__ platform. I've fixed this for my immediate install.
 
 If you need to do the same, please navigate to main.js and change LINE 44 to include the __browser__ platform:
