@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.reallyenglish.browser-media" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>BrowserMedia</name>
+  <js-module name="BrowserMedia" src="www/BrowserMedia.js">
+    <clobbers target="window.Media" />
+  </js-module>
+
+  <dependency id="org.apache.cordova.media" version=">=0.2.14" />
+
+  <!-- browser -->
+  <platform name="browser">
+    <config-file target="config.xml" parent="/*">
+      <feature name="Media">
+        <param name="browser-package" value="Media" />
+      </feature>
+    </config-file>
+
+    <js-module src="src/browser/MediaProxy.js" name="MediaProxy">
+      <runs />
+    </js-module>
+  </platform>
+</plugin>
