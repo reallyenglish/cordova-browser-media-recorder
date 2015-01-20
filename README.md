@@ -2,7 +2,7 @@
 
 ## General use
 
-In youe project, just install the plugin directly from github using the Cordova CLI:
+In your project, just install the plugin directly from github using the Cordova CLI:
 
 ```
 cordova plugin add https://github.com/reallyenglish/cordova-browser-media.git
