@@ -1,15 +1,30 @@
 # cordova-browser-media
 
-To install this plugin ensure plugman is installed globally
+## General use
+
+In youe project, just install the plugin directly from github using the Cordova CLI:
+
+```
+cordova plugin add https://github.com/reallyenglish/cordova-browser-media.git
+```
+
+## Development 
+
+The development cycle will require cloning the repo and then installing plugman globally.
 ```
 npm install plugman -g
 ```
 
-and then clone the repo.
+Then add features/fixes as necessary. To test on an app, ensure you install / uninstall the plugin accordingly.
 
-## Things to note
+For example in our project, we uninstall the plugin and then re-install to acquire the latest features. After which we build and then run the browser platform using:
+```
+grunt --gruntfile=yeoman/Gruntfile.js devBuild && cordova run browser
+```
 
-I've found that the recent version of plugman doesn't respond correctly to CLI __install__ commands for the
+### Gotchas
+
+I've found that the latest version of plugman (0.22.17) doesn't respond correctly to CLI __install__ commands for the
 __browser__ platform. I've fixed this for my immediate install.
 
 If you need to do the same, please navigate to main.js and change LINE 44 to include the __browser__ platform:
@@ -22,18 +37,7 @@ Find the location of your plugman install using:
 type plugman
 ```
 
-I'm hoping this will just work now that plugin is hosted on github. Still investigating.
-
-## Development
-
-Add functionality to plugin and then install / uninstall (to mirror latest updates) accordingly.
-
-To get the latest functionality after installing the plugin to the project:
-```
-grunt --gruntfile=yeoman/Gruntfile.js devBuild && cordova run browser
-```
-
-This will ensure the latest files are copied correctly.
+This will probably be fixed in upcoming releases.
 
 ### Installing plugin during development
 
