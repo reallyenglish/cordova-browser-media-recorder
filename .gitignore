@@ -1,0 +1,33 @@
+#####
+# OS X temporary files that should never be committed
+
+.DS_Store
+*.swp
+*.lock
+*.todo
+profile
+*.po~
+
+#####
+# NPM local modules
+
+node_modules/
+
+#####
+# Logs
+
+*.log
+
+#####
+# Testing
+
+*.trace/*
+
+####
+# vim floaties
+*.un~
+*.swp
+
+####
+# emacs floaties
+*.*~
