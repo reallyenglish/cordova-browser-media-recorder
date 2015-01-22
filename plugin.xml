@@ -1,11 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="com.reallyenglish.browser-media" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="com.reallyenglish.cordova.plugin.browser-media" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
   <name>BrowserMedia</name>
+
+  <dependency id="org.apache.cordova.media" version=">=0.2.14" />
+
+  <!-- Third party libraries -->
+  <js-module name="underscorejs" src="www/lib/underscore-min-1.7.0.js">
+    <runs/>
+  </js-module>
+
+  <!-- Plugin source code: Core -->
+
   <js-module name="BrowserMedia" src="www/BrowserMedia.js">
     <clobbers target="window.Media" />
   </js-module>
-
-  <dependency id="org.apache.cordova.media" version=">=0.2.14" />
 
   <!-- browser -->
   <platform name="browser">
