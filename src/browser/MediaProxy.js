@@ -21,15 +21,16 @@ module.exports = {
       jQuery('#' + playerDiv.id).jPlayer({
         ready: function(){
           jQuery(this).jPlayer("setMedia", {
-            mp3: "http://www.freesfx.co.uk/rx2/mp3s/10/11333_1399100038.mp3"
-          }).jPlayer("play");
+            mp3: src
+          }).jPlayer("play").jPlayer("pause");
         },
         play: function(e){
           console.log('MediaProxy#create play event', e);
         },
         supplied: "mp3",
-        swfPath: "/lib",
+        swfPath: "scripts",
         solution: 'html, flash'
+        // solution: 'flash, html'
       });
     });
   },
