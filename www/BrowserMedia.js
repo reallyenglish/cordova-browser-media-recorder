@@ -40,7 +40,8 @@ baseMedia.extend = extend;
 window.Media = baseMedia.extend({
   constructor: function(src, successCallback, errorCallback, statusCallback){
     console.log('Wrapping this BAD BOY');
-    baseMedia.apply(this, arguments);
+    baseMedia.call(this, src, successCallback, errorCallback, statusCallback);
+    console.log('baseMedia id', this.id, 'src', this.src);
   }
 });
 
