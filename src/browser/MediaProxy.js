@@ -1,5 +1,6 @@
 // var jQuery = require('com.reallyenglish.cordova.plugin.browser-media.jQuery');
 var jQuery = window.com.reallyenglish.cordova.plugin.browsermedia.lib.jQuery;
+jQuery.noConflict(true);
 
 module.exports = {
   create: function(){
@@ -19,6 +20,7 @@ module.exports = {
       // http://www.freesfx.co.uk/rx2/mp3s/10/11333_1399100038.mp3
 
       jQuery('#' + playerDiv.id).jPlayer({
+        noConflict: 'window.com.reallyenglish.cordova.plugin.browsermedia.lib.jQuery',
         ready: function(){
           jQuery(this).jPlayer("setMedia", {
             mp3: src
@@ -27,10 +29,11 @@ module.exports = {
         play: function(e){
           console.log('MediaProxy#create play event', e);
         },
+        wmode:"window",
         supplied: "mp3",
-        swfPath: "scripts",
-        solution: 'html, flash'
-        // solution: 'flash, html'
+        swfPath: "scripts/jquery.jplayer.swf",
+        // solution: 'html, flash',
+        solution: 'flash, html'
       });
     });
   },
