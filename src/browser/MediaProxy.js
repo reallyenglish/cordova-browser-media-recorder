@@ -31,8 +31,13 @@ module.exports = {
           });
         },
 
-        canplay: function(e){
-          console.log('MediaProxy#create CANPLAY event', e);
+        // canplay: function(e){
+        //   console.log('MediaProxy#create CANPLAY event', e);
+        //   canPlayCallback(id, MEDIA_CAN_PLAY);
+        // },
+
+        loadstart: function(e){
+          console.log('MediaProxy#create LOADSTART event', e);
           canPlayCallback(id, MEDIA_CAN_PLAY);
         },
 
@@ -43,7 +48,8 @@ module.exports = {
         wmode:"window",
         supplied: "mp3",
         swfPath: "scripts/jquery.jplayer.swf",
-        solution: 'html, flash'
+        preload: 'auto',
+        solution: 'flash, html'
       });
     });
   },
