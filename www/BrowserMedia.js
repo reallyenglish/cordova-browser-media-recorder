@@ -1,5 +1,9 @@
-var exec = require('cordova/exec'),
+var argscheck = require('cordova/argscheck'),
+    utils = require('cordova/utils'),
+    exec = require('cordova/exec'),
     _ = require('com.reallyenglish.cordova.plugin.browser-media.underscorejs');
+
+var mediaObjects = {};
 
 var extend = function(protoProps, staticProps) {
   var parent = this;
@@ -36,13 +40,70 @@ var extend = function(protoProps, staticProps) {
 
 var baseMedia = window.Media;
 baseMedia.extend = extend;
+baseMedia.MEDIA_CAN_PLAY = 5;
+baseMedia.MEDIA_MSG = baseMedia.MEDIA_MSG.push('Can play');
 
 window.Media = baseMedia.extend({
   constructor: function(src, successCallback, errorCallback, statusCallback){
     console.log('Wrapping this BAD BOY');
-    baseMedia.call(this, src, successCallback, errorCallback, statusCallback);
+
+    argscheck.checkArgs('SFFF', 'Media', arguments);
+    this.id = utils.createUUID();
+    mediaObjects[this.id] = this;
+
+    this.src = src;
+    this.successCallback = successCallback;
+    this.errorCallback = errorCallback;
+    this.statusCallback = statusCallback;
+    this._duration = -1;
+    this._position = -1;
+
+    exec(function(id, value){
+      window.Media.onStatus(id, baseMedia.MEDIA_STATE, value);
+    }, this.errorCallback, "Media", "create", [this.id, this.src]);
+
     console.log('baseMedia id', this.id, 'src', this.src);
   }
+},
+{
+  get: function(id) {
+    return mediaObjects[id];
+  },
+
+  onStatus: function(id, msgType, value) {
+    var media = mediaObjects[id];
+    console.log('#onStatus media', media);
+
+    if(media) {
+      switch(msgType) {
+        case Media.MEDIA_STATE :
+          media.statusCallback && media.statusCallback(value);
+          if(value === Media.MEDIA_STOPPED) {
+            media.successCallback && media.successCallback();
+          }
+          break;
+
+        case Media.MEDIA_DURATION :
+          media._duration = value;
+          break;
+
+        case Media.MEDIA_ERROR :
+          media.errorCallback && media.errorCallback(value);
+          break;
+
+        case Media.MEDIA_POSITION :
+          media._position = Number(value);
+          break;
+
+        default :
+          console.error && console.error("Unhandled Media.onStatus :: " + msgType);
+          break;
+      }
+  }
+  else {
+    console.error && console.error("Received Media.onStatus callback for unknown media :: " + id);
+  }
+}
 });
 
 module.exports = window.Media;

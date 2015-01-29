@@ -2,12 +2,16 @@
 var jQuery = window.com.reallyenglish.cordova.plugin.browsermedia.lib.jQuery;
 jQuery.noConflict(true);
 
+var MEDIA_CAN_PLAY = 5;
+
 module.exports = {
   create: function(){
-    var args = Array.prototype.slice.call(arguments, 2)[0],
+    var canPlayCallback = Array.prototype.slice.call(arguments, 0, 1)[0],
+        args = Array.prototype.slice.call(arguments, 2)[0],
         id = args[0],
         src = args[1];
 
+    console.log('MediaProxy#create canPlayCallback', canPlayCallback);
     console.log('MediaProxy#create id', id, 'src', src);
 
     jQuery( document ).ready(function() {
@@ -24,16 +28,22 @@ module.exports = {
         ready: function(){
           jQuery(this).jPlayer("setMedia", {
             mp3: src
-          }).jPlayer("play").jPlayer("pause");
+          });
         },
+
+        canplay: function(e){
+          console.log('MediaProxy#create CANPLAY event', e);
+          canPlayCallback(id, MEDIA_CAN_PLAY);
+        },
+
         play: function(e){
-          console.log('MediaProxy#create play event', e);
+          console.log('MediaProxy#create PLAY event', e);
         },
+
         wmode:"window",
         supplied: "mp3",
         swfPath: "scripts/jquery.jplayer.swf",
-        // solution: 'html, flash',
-        solution: 'flash, html'
+        solution: 'html, flash'
       });
     });
   },
