@@ -115,7 +115,16 @@ module.exports = {
 
   stopRecordingAudio: function(){},
 
-  release: function(){ console.log('release'); },
+  release: function(){
+    var args = Array.prototype.slice.call(arguments, 2)[0],
+        id = args[0],
+        jPlayerId = 'jquery_jplayer_' + id;
+
+    if(!jQuery('#' + jPlayerId)){ return; }
+
+    console.log('MediaProxy#release jPlayerId', jPlayerId);
+    jQuery('#' + jPlayerId).jPlayer('destroy');
+  },
 
   setVolume: function(){
     var args = Array.prototype.slice.call(arguments, 2)[0],
