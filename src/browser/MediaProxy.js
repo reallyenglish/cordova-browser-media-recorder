@@ -62,7 +62,16 @@ module.exports = {
     jQuery('#' + jPlayerId).jPlayer('play');
   },
 
-  stopPlayingAudio: function(){ console.log('stopPlayingAudio!'); },
+  stopPlayingAudio: function(){
+    var args = Array.prototype.slice.call(arguments, 2)[0],
+        id = args[0],
+        jPlayerId = 'jquery_jplayer_' + id;
+
+    if(!jQuery('#' + jPlayerId)){ return; }
+
+    console.log('MediaProxy#stopPlayingAudio jPlayerId', jPlayerId);
+    jQuery('#' + jPlayerId).jPlayer('stop');
+  },
 
   seekToAudio: function(){ console.log('seekToAudio!'); },
 
