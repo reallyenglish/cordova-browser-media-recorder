@@ -40,6 +40,10 @@ module.exports = {
           console.log('MediaProxy#create PLAY event', e);
         },
 
+        pause: function(e){
+          console.log('MediaProxy#create PAUSE event', e);
+        },
+
         wmode:"window",
         supplied: "mp3",
         swfPath: "scripts/jquery.jplayer.swf",
@@ -75,7 +79,16 @@ module.exports = {
 
   seekToAudio: function(){ console.log('seekToAudio!'); },
 
-  pausePlayingAudio: function(){ console.log('pausePlayingAudio!'); },
+  pausePlayingAudio: function(){
+    var args = Array.prototype.slice.call(arguments, 2)[0],
+        id = args[0],
+        jPlayerId = 'jquery_jplayer_' + id;
+
+    if(!jQuery('#' + jPlayerId)){ return; }
+
+    console.log('MediaProxy#pausePlayingAudio jPlayerId', jPlayerId);
+    jQuery('#' + jPlayerId).jPlayer('pause');
+  },
 
   getCurrentPositionAudio: function(){ console.log('getCurrentPositionAudio!'); },
 
