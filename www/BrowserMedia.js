@@ -40,8 +40,8 @@ var extend = function(protoProps, staticProps) {
 
 var baseMedia = window.Media;
 baseMedia.extend = extend;
-baseMedia.MEDIA_CAN_PLAY = 5;
-baseMedia.MEDIA_MSG = baseMedia.MEDIA_MSG.push('Can play');
+baseMedia.MEDIA_CAN_PLAY_THROUGH = 5;
+baseMedia.MEDIA_MSG = baseMedia.MEDIA_MSG.push('Can play all the way through');
 
 window.Media = baseMedia.extend({
   constructor: function(src, successCallback, errorCallback, statusCallback){

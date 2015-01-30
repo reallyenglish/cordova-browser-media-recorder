@@ -2,7 +2,7 @@
 var jQuery = window.com.reallyenglish.cordova.plugin.browsermedia.lib.jQuery;
 jQuery.noConflict(true);
 
-var MEDIA_CAN_PLAY = 5;
+var MEDIA_CAN_PLAY_THROUGH = 5;
 
 module.exports = {
   create: function(){
@@ -31,14 +31,9 @@ module.exports = {
           });
         },
 
-        // canplay: function(e){
-        //   console.log('MediaProxy#create CANPLAY event', e);
-        //   canPlayCallback(id, MEDIA_CAN_PLAY);
-        // },
-
-        loadstart: function(e){
-          console.log('MediaProxy#create LOADSTART event', e);
-          canPlayCallback(id, MEDIA_CAN_PLAY);
+        canplaythrough: function(e){
+          console.log('MediaProxy#create CANPLAYTHROUGH event', e);
+          canPlayCallback(id, MEDIA_CAN_PLAY_THROUGH);
         },
 
         play: function(e){
@@ -49,7 +44,7 @@ module.exports = {
         supplied: "mp3",
         swfPath: "scripts/jquery.jplayer.swf",
         preload: 'auto',
-        solution: 'flash, html'
+        solution: 'html, flash'
       });
     });
   },
