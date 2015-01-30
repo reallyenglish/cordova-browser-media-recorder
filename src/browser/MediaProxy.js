@@ -44,6 +44,10 @@ module.exports = {
           console.log('MediaProxy#create PAUSE event', e);
         },
 
+        seeking: function(e){
+          console.log('MediaProxy#create SEEKING event', e);
+        },
+
         wmode:"window",
         supplied: "mp3",
         swfPath: "scripts/jquery.jplayer.swf",
@@ -77,7 +81,18 @@ module.exports = {
     jQuery('#' + jPlayerId).jPlayer('stop');
   },
 
-  seekToAudio: function(){ console.log('seekToAudio!'); },
+  seekToAudio: function(){
+    var args = Array.prototype.slice.call(arguments, 2)[0],
+        id = args[0],
+        milliseconds = parseInt(args[1], 10),
+        seconds = milliseconds / 1000,
+        jPlayerId = 'jquery_jplayer_' + id;
+
+    if(!jQuery('#' + jPlayerId)){ return; }
+
+    console.log('MediaProxy#seekToAudio jPlayerId', jPlayerId, 'seconds', seconds);
+    jQuery('#' + jPlayerId).jPlayer('play', seconds);
+  },
 
   pausePlayingAudio: function(){
     var args = Array.prototype.slice.call(arguments, 2)[0],
