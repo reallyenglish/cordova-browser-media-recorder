@@ -6,12 +6,12 @@ var MEDIA_CAN_PLAY_THROUGH = 5;
 
 module.exports = {
   create: function(){
-    var canPlayCallback = Array.prototype.slice.call(arguments, 0, 1)[0],
+    var onStatusCallback = Array.prototype.slice.call(arguments, 0, 1)[0],
         args = Array.prototype.slice.call(arguments, 2)[0],
         id = args[0],
         src = args[1];
 
-    console.log('MediaProxy#create canPlayCallback', canPlayCallback);
+    console.log('MediaProxy#create onStatusCallback', onStatusCallback);
     console.log('MediaProxy#create id', id, 'src', src);
 
     jQuery( document ).ready(function() {
@@ -33,7 +33,7 @@ module.exports = {
 
         canplaythrough: function(e){
           console.log('MediaProxy#create CANPLAYTHROUGH event', e);
-          canPlayCallback(id, MEDIA_CAN_PLAY_THROUGH);
+          onStatusCallback(id, MEDIA_CAN_PLAY_THROUGH);
         },
 
         play: function(e){
