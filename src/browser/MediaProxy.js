@@ -1,8 +1,18 @@
+//TODO: Complete seekTo: Call success callback with current position in milliseconds.
+//TODO: Implement getCurrentPosition: Call success callback with current position in milliseconds.
+//TODO: Implement Status Callbacks - require org.apache.cordova.media.Media directly? :
+//      MEDIA_RUNNING
+//      MEDIA_PAUSED
+//      MEDIA_STOPPED
+//      MEDIA_RELEASED
+
+
 // var jQuery = require('com.reallyenglish.cordova.plugin.browser-media.jQuery');
 var jQuery = window.com.reallyenglish.cordova.plugin.browsermedia.lib.jQuery;
 jQuery.noConflict(true);
 
-var MEDIA_CAN_PLAY_THROUGH = 5;
+var MEDIA_STOPPED = 4,
+    MEDIA_CAN_PLAY_THROUGH = 5;
 
 module.exports = {
   create: function(){
