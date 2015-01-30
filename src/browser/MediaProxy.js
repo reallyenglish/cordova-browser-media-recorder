@@ -48,6 +48,10 @@ module.exports = {
           console.log('MediaProxy#create SEEKING event', e);
         },
 
+        volumechange: function(e){
+          console.log('MediaProxy#create VOLUMECHANGE event', e);
+        },
+
         wmode:"window",
         supplied: "mp3",
         swfPath: "scripts/jquery.jplayer.swf",
@@ -113,7 +117,17 @@ module.exports = {
 
   release: function(){ console.log('release'); },
 
-  setVolume: function(){ console.log('setVolume'); }
+  setVolume: function(){
+    var args = Array.prototype.slice.call(arguments, 2)[0],
+        id = args[0],
+        volume = parseFloat(args[1]),
+        jPlayerId = 'jquery_jplayer_' + id;
+
+    if(!jQuery('#' + jPlayerId)){ return; }
+
+    console.log('MediaProxy#setVolume jPlayerId', jPlayerId, 'volume', volume);
+    jQuery('#' + jPlayerId).jPlayer('volume', volume);
+  }
 };
 
 require("cordova/exec/proxy").add("Media", module.exports);
