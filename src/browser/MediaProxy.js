@@ -9,7 +9,11 @@
 var jQuery = window.com.reallyenglish.cordova.plugin.browsermedia.lib.jQuery;
 jQuery.noConflict(true);
 
-var MEDIA_STOPPED = 4,
+var MEDIA_NONE = 0,
+    MEDIA_STARTING = 1,
+    MEDIA_RUNNING = 2,
+    MEDIA_PAUSED = 3,
+    MEDIA_STOPPED = 4,
     MEDIA_CAN_PLAY_THROUGH = 5;
 
 module.exports = {
@@ -46,10 +50,17 @@ module.exports = {
 
         play: function(e){
           console.log('MediaProxy#create PLAY event', e);
+          onStatusCallback(id, MEDIA_STARTING);
+        },
+
+        playing: function(e){
+          console.log('MediaProxy#create PLAY event', e);
+          onStatusCallback(id, MEDIA_RUNNING);
         },
 
         pause: function(e){
           console.log('MediaProxy#create PAUSE event', e);
+          onStatusCallback(id, MEDIA_PAUSED);
         },
 
         seeking: function(e){
@@ -58,6 +69,11 @@ module.exports = {
 
         volumechange: function(e){
           console.log('MediaProxy#create VOLUMECHANGE event', e);
+        },
+
+        ended: function(e){
+          console.log('MediaProxy#create ENDED event', e);
+          onStatusCallback(id, MEDIA_STOPPED);
         },
 
         wmode:"window",
