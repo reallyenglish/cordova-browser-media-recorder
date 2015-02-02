@@ -1,5 +1,3 @@
-//TODO: Complete seekTo: Call success callback with current position in milliseconds.
-//TODO: Implement getCurrentPosition: Call success callback with current position in milliseconds.
 //TODO: Implement Status Callbacks - require org.apache.cordova.media.Media directly? :
 //      MEDIA_RUNNING
 //      MEDIA_PAUSED
@@ -121,7 +119,19 @@ module.exports = {
     jQuery('#' + jPlayerId).jPlayer('pause');
   },
 
-  getCurrentPositionAudio: function(){ console.log('getCurrentPositionAudio!'); },
+  getCurrentPositionAudio: function(){
+    var onSuccessCallback = Array.prototype.slice.call(arguments, 0, 1)[0],
+        args = Array.prototype.slice.call(arguments, 2)[0],
+        id = args[0],
+        jPlayerId = 'jquery_jplayer_' + id,
+        jpData = jQuery('#' + jPlayerId).data('jPlayer'),
+        currentPositionInMilliseconds = jpData.status.currentTime * 1000;
+
+    if(!jQuery('#' + jPlayerId)){ return; }
+
+    console.log('MediaProxy#getCurrentPositionAudio jPlayerId', jPlayerId, 'currentPositionInMilliseconds', currentPositionInMilliseconds);
+    onSuccessCallback(currentPositionInMilliseconds);
+  },
 
   startRecordingAudio: function(){},
 
