@@ -1,9 +1,4 @@
-//TODO: Implement Status Callbacks - require org.apache.cordova.media.Media directly? :
-//      MEDIA_RUNNING
-//      MEDIA_PAUSED
-//      MEDIA_STOPPED
-//      MEDIA_RELEASED
-
+//TODO: Implement DURATION
 
 // var jQuery = require('com.reallyenglish.cordova.plugin.browser-media.jQuery');
 var jQuery = window.com.reallyenglish.cordova.plugin.browsermedia.lib.jQuery;
@@ -114,14 +109,14 @@ module.exports = {
         args = Array.prototype.slice.call(arguments, 2)[0],
         id = args[0],
         milliseconds = parseInt(args[1], 10),
-        seconds = milliseconds / 1000,
+        seconds = Math.floor(milliseconds / 1000),
         jPlayerId = 'jquery_jplayer_' + id;
 
     if(!jQuery('#' + jPlayerId)){ return; }
 
     console.log('MediaProxy#seekToAudio jPlayerId', jPlayerId, 'seconds', seconds);
     jQuery('#' + jPlayerId).jPlayer('play', seconds);
-    onSuccessCallback(milliseconds);
+    onSuccessCallback(seconds);
   },
 
   pausePlayingAudio: function(){
@@ -141,12 +136,12 @@ module.exports = {
         id = args[0],
         jPlayerId = 'jquery_jplayer_' + id,
         jpData = jQuery('#' + jPlayerId).data('jPlayer'),
-        currentPositionInMilliseconds = jpData.status.currentTime * 1000;
+        currentPositionInSeconds = jpData.status.currentTime;
 
     if(!jQuery('#' + jPlayerId)){ return; }
 
-    console.log('MediaProxy#getCurrentPositionAudio jPlayerId', jPlayerId, 'currentPositionInMilliseconds', currentPositionInMilliseconds);
-    onSuccessCallback(currentPositionInMilliseconds);
+    console.log('MediaProxy#getCurrentPositionAudio jPlayerId', jPlayerId, 'currentPositionInSeconds', currentPositionInSeconds);
+    onSuccessCallback(currentPositionInSeconds);
   },
 
   startRecordingAudio: function(){},
