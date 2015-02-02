@@ -96,7 +96,8 @@ module.exports = {
   },
 
   seekToAudio: function(){
-    var args = Array.prototype.slice.call(arguments, 2)[0],
+    var onSuccessCallback = Array.prototype.slice.call(arguments, 0, 1)[0],
+        args = Array.prototype.slice.call(arguments, 2)[0],
         id = args[0],
         milliseconds = parseInt(args[1], 10),
         seconds = milliseconds / 1000,
@@ -106,6 +107,7 @@ module.exports = {
 
     console.log('MediaProxy#seekToAudio jPlayerId', jPlayerId, 'seconds', seconds);
     jQuery('#' + jPlayerId).jPlayer('play', seconds);
+    onSuccessCallback(milliseconds);
   },
 
   pausePlayingAudio: function(){
