@@ -4,6 +4,12 @@
 var jQuery = window.com.reallyenglish.cordova.plugin.browsermedia.lib.jQuery;
 jQuery.noConflict(true);
 
+// Media messages
+var MEDIA_STATE = 1,
+    MEDIA_DURATION = 2,
+    MEDIA_POSITION = 3,
+    MEDIA_ERROR = 9;
+
 var MEDIA_NONE = 0,
     MEDIA_STARTING = 1,
     MEDIA_RUNNING = 2,
@@ -40,22 +46,27 @@ module.exports = {
 
         canplaythrough: function(e){
           console.log('MediaProxy#create CANPLAYTHROUGH event', e);
-          onStatusCallback(id, MEDIA_CAN_PLAY_THROUGH);
+          onStatusCallback(id, MEDIA_STATE, MEDIA_CAN_PLAY_THROUGH);
+        },
+
+        durationchange: function(e){
+          console.log('MediaProxy#create DURATIONCHANGE event', e);
+          onStatusCallback(id, MEDIA_DURATION, e.jPlayer.status.duration);
         },
 
         play: function(e){
           console.log('MediaProxy#create PLAY event', e);
-          onStatusCallback(id, MEDIA_STARTING);
+          onStatusCallback(id, MEDIA_STATE, MEDIA_STARTING);
         },
 
         playing: function(e){
-          console.log('MediaProxy#create PLAY event', e);
-          onStatusCallback(id, MEDIA_RUNNING);
+          console.log('MediaProxy#create PLAYING event', e);
+          onStatusCallback(id, MEDIA_STATE, MEDIA_RUNNING);
         },
 
         pause: function(e){
           console.log('MediaProxy#create PAUSE event', e);
-          onStatusCallback(id, MEDIA_PAUSED);
+          onStatusCallback(id, MEDIA_STATE, MEDIA_PAUSED);
         },
 
         seeking: function(e){
@@ -68,7 +79,7 @@ module.exports = {
 
         ended: function(e){
           console.log('MediaProxy#create ENDED event', e);
-          onStatusCallback(id, MEDIA_STOPPED);
+          onStatusCallback(id, MEDIA_STATE, MEDIA_STOPPED);
         },
 
         wmode:"window",

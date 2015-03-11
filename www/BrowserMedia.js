@@ -58,8 +58,9 @@ window.Media = baseMedia.extend({
     this._duration = -1;
     this._position = -1;
 
-    exec(function(id, value){
-      window.Media.onStatus(id, baseMedia.MEDIA_STATE, value);
+    exec(function(id, msgType, value){
+      // window.Media.onStatus(id, baseMedia.MEDIA_STATE, value);
+      window.Media.onStatus(id, msgType, value);
     }, this.errorCallback, "Media", "create", [this.id, this.src]);
 
     console.log('baseMedia id', this.id, 'src', this.src);
