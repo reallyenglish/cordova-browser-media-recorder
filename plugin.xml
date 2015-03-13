@@ -9,6 +9,7 @@
     <runs/>
   </js-module>
 
+  <!-- playback -->
   <js-module name="jQuery" src="www/lib/jquery-2.1.3.min.js">
     <clobbers target="window.com.reallyenglish.cordova.plugin.browsermedia.lib.jQuery" />
     <runs/>
@@ -16,6 +17,12 @@
 
   <asset src="www/lib/jquery.jplayer.swf" target="scripts/jquery.jplayer.swf" />
   <js-module name="jPlayer" src="www/lib/jquery.jplayer.js">
+    <runs/>
+  </js-module>
+
+  <!-- recording -->
+  <asset src="www/lib/recorder.swf" target="scripts/recorder.swf" />
+  <js-module name="MediaRecorder" src="www/lib/media-recorder.js">
     <runs/>
   </js-module>
 

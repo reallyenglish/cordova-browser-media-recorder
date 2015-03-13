@@ -1,4 +1,7 @@
-var jQuery = window.com.reallyenglish.cordova.plugin.browsermedia.lib.jQuery;
+var jQuery = window.com.reallyenglish.cordova.plugin.browsermedia.lib.jQuery,
+    Recorder = require('com.reallyenglish.cordova.plugin.browser-media.MediaRecorder'),
+    BrowserMedia = require('com.reallyenglish.cordova.plugin.browser-media.BrowserMedia');
+
 jQuery.noConflict(true);
 
 // Media messages
@@ -153,9 +156,36 @@ module.exports = {
     onSuccessCallback(currentPositionInSeconds);
   },
 
-  startRecordingAudio: function(){},
+  startRecordingAudio: function(){
+    var args = Array.prototype.slice.call(arguments, 2)[0],
+        id = args[0],
+        src = args[1];
 
-  stopRecordingAudio: function(){},
+    this.recorder = Recorder.getInstance({swfSrc: 'scripts/recorder.swf'});
+
+    console.log('MediaProxy#startRecordingAudio fake src', src);
+    this.Recorder.record();
+  },
+
+  stopRecordingAudio: function(){
+    var self = this,
+        args = Array.prototype.slice.call(arguments, 2)[0],
+        id = args[0];
+
+    if(!this.recorder){ return; }
+
+    var mediaInstanceById = BrowserMedia.get(id);
+    console.log('MediaProxy#stopRecordingAudio mediaInstanceById', mediaInstanceById);
+
+    var dataReady = function(data) {
+      mediaInstanceById.src = window.URL.createObjectURL(data);
+      self.onStatusCallback(id, MEDIA_STATE, MEDIA_STOPPED);
+      console.log('MediaProxy#stopRecordingAudio - new fake src', mediaInstanceById.src);
+    };
+
+    this.recorder.stop();
+    this.recorder.getData(dataReady);
+  },
 
   release: function(){
     var args = Array.prototype.slice.call(arguments, 2)[0],
