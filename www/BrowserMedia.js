@@ -45,7 +45,7 @@ baseMedia.MEDIA_MSG = baseMedia.MEDIA_MSG.push('Can play all the way through');
 
 window.Media = baseMedia.extend({
   constructor: function(src, successCallback, errorCallback, statusCallback){
-    console.log('Wrapping this BAD BOY');
+    // console.log('Wrapping this BAD BOY');
 
     argscheck.checkArgs('SFFF', 'Media', arguments);
     this.id = utils.createUUID();
@@ -63,7 +63,7 @@ window.Media = baseMedia.extend({
       window.Media.onStatus(id, msgType, value);
     }, this.errorCallback, "Media", "create", [this.id, this.src]);
 
-    console.log('baseMedia id', this.id, 'src', this.src);
+    // console.log('baseMedia id', this.id, 'src', this.src);
   }
 },
 {

@@ -19,7 +19,6 @@
 (function (root, factory) {
 	// Browser globals
 	if(root.com.reallyenglish.cordova.plugin.browsermedia.lib.jQuery) { // Use jQuery if available
-		console.log('JQUERY YES!');
 		factory(root.com.reallyenglish.cordova.plugin.browsermedia.lib.jQuery);
 	} else {
 		console.log('JQUERY NO!');

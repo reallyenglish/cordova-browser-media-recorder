@@ -26,12 +26,10 @@ module.exports = {
         id = args[0],
         src = args[1];
 
-    console.log('MediaProxy#create onStatusCallback', self.onStatusCallback);
-    console.log('MediaProxy#create id', id, 'src', src);
+    // console.log('MediaProxy#create onStatusCallback', self.onStatusCallback);
+    // console.log('MediaProxy#create id', id, 'src', src);
 
     jQuery( document ).ready(function() {
-      console.log('MediaProxy#create document ready');
-
       var playerDiv = document.createElement("div");
       playerDiv.id = 'jquery_jplayer_' + id;
 
@@ -164,7 +162,7 @@ module.exports = {
     this.recorder = Recorder.getInstance({swfSrc: 'scripts/recorder.swf'});
 
     console.log('MediaProxy#startRecordingAudio fake src', src);
-    this.Recorder.record();
+    this.recorder.record();
   },
 
   stopRecordingAudio: function(){
