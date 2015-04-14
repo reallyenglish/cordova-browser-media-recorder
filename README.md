@@ -5,7 +5,7 @@
 In your project, just install the plugin directly from github using the Cordova CLI:
 
 ```
-cordova plugin add https://github.com/reallyenglish/cordova-browser-media.git
+cordova plugin add https://github.com/reallyenglish/cordova-browser-media-recorder.git
 ```
 
 ## Development 
@@ -19,7 +19,7 @@ Then add features/fixes as necessary. To test on an app, ensure you install / un
 
 For example in our project, we uninstall the plugin and then re-install to acquire the latest features. After which we build and then run the browser platform using:
 ```
-grunt --gruntfile=yeoman/Gruntfile.js devBuild && cordova run browser
+grunt --gruntfile=yeoman/Gruntfile.js build:development && cordova prepare browser
 ```
 
 ### Gotchas
@@ -44,11 +44,11 @@ This will probably be fixed in upcoming releases.
 Ensure you're outside the plugin's directory. Then issue:
 
 ```
-plugman -d install --platform 'browser' --project rels-mobile --plugin cordova-browser-media --plugins_dir /path/to/rels-mobile/plugins
+plugman -d install --platform 'browser' --project rels-mobile --plugin cordova-browser-media-recorder --plugins_dir /path/to/your/plugins/dir
 ```
 
 ### Uninstalling plugin during development
 
 ```
-plugman -d uninstall --platform 'browser' --project rels-mobile --plugin cordova-browser-media --plugins_dir /path/to/rels-mobile/plugins
+plugman -d uninstall --platform 'browser' --project rels-mobile --plugin cordova-browser-media-recorder --plugins_dir /path/to/your/plugins/dir
 ```
