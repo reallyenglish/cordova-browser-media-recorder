@@ -2,21 +2,12 @@
 <plugin id="com.reallyenglish.cordova.plugin.browser-media" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
   <name>BrowserMedia</name>
 
-  <dependency id="org.apache.cordova.media" version=">=0.2.14" />
+  <dependency id="org.apache.cordova.media"
+    url='https://github.com/apache/cordova-plugin-media'
+    commit="a8b6f9e41f1359f97e5a67b4c8d5cb7c71a7fab6" />
 
   <!-- Third party libraries -->
   <js-module name="underscorejs" src="www/lib/underscore-min-1.7.0.js">
-    <runs/>
-  </js-module>
-
-  <!-- playback -->
-  <js-module name="jQuery" src="www/lib/jquery-2.1.3.min.js">
-    <clobbers target="window.com.reallyenglish.cordova.plugin.browsermedia.lib.jQuery" />
-    <runs/>
-  </js-module>
-
-  <asset src="www/lib/jquery.jplayer.swf" target="scripts/jquery.jplayer.swf" />
-  <js-module name="jPlayer" src="www/lib/jquery.jplayer.js">
     <runs/>
   </js-module>
 
