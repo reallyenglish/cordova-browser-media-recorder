@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="com.reallyenglish.cordova.plugin.browser-media" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-  <name>BrowserMedia</name>
+<plugin id="com.reallyenglish.cordova.plugin.browser-media-recorder" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>BrowserMediaRecorder</name>
 
   <dependency id="org.apache.cordova.media"
     url='https://github.com/apache/cordova-plugin-media'

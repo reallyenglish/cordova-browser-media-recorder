@@ -1,7 +1,7 @@
 var argscheck = require('cordova/argscheck'),
     utils = require('cordova/utils'),
     exec = require('cordova/exec'),
-    _ = require('com.reallyenglish.cordova.plugin.browser-media.underscorejs');
+    _ = require('com.reallyenglish.cordova.plugin.browser-media-recorder.underscorejs');
 
 var mediaObjects = {};
 

@@ -1,5 +1,5 @@
-var Recorder = require('com.reallyenglish.cordova.plugin.browser-media.MediaRecorder'),
-    BrowserMedia = require('com.reallyenglish.cordova.plugin.browser-media.BrowserMedia');
+var Recorder = require('com.reallyenglish.cordova.plugin.browser-media-recorder.MediaRecorder'),
+    BrowserMedia = require('com.reallyenglish.cordova.plugin.browser-media-recorder.BrowserMedia');
 
 module.exports = {
   startRecordingAudio: function(){
